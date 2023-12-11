@@ -25,16 +25,17 @@ class ItemPostAdapter extends TypeAdapter<ItemPost> {
       view: fields[8] as int,
       like: fields[9] as int,
       image: fields[3] as String,
-      createAt: fields[10] as DateTime?,
+      createdAt: fields[10] as DateTime?,
       categoryId: fields[6] as String,
       categoryName: fields[7] as String,
+      readTime: fields[11] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ItemPost obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -56,7 +57,9 @@ class ItemPostAdapter extends TypeAdapter<ItemPost> {
       ..writeByte(9)
       ..write(obj.like)
       ..writeByte(10)
-      ..write(obj.createAt);
+      ..write(obj.createdAt)
+      ..writeByte(11)
+      ..write(obj.readTime);
   }
 
   @override
@@ -90,11 +93,10 @@ ItemPost _$ItemPostFromJson(Map<String, dynamic> json) => ItemPost(
       view: json['view'] as int,
       like: json['like'] as int,
       image: json['image'] as String,
-      createAt: json['create_at'] == null
-          ? null
-          : DateTime.parse(json['create_at'] as String),
+      createdAt: _dateTimeFromJson(json['created_at'] as String),
       categoryId: json['category_id'] as String,
       categoryName: json['category_name'] as String,
+      readTime: json['read_time'] as int?,
     );
 
 Categories _$CategoriesFromJson(Map<String, dynamic> json) => Categories(

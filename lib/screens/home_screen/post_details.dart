@@ -97,7 +97,7 @@ class _PostDetailsState extends ConsumerState<PostDetails> {
                           borderRadius: BorderRadius.circular(20),
                           color: AppColors.secondaryColor,
                         ),
-                        child:  Text(
+                        child: Text(
                           widget.post.categoryName,
                           style: const TextStyle(fontSize: 13),
                         ),
@@ -132,7 +132,9 @@ class _PostDetailsState extends ConsumerState<PostDetails> {
                   child: GestureDetector(
                     onTap: () {
                       if (isFavoritePost()) {
-                        ref.read(favoriteStorageDataProvider.notifier).removeFavorite(widget.post.id);
+                        ref
+                            .read(favoriteStorageDataProvider.notifier)
+                            .removeFavorite(widget.post.id);
                       } else {
                         ref.read(favoriteStorageDataProvider.notifier).addFavorite(widget.post);
                       }
@@ -146,8 +148,9 @@ class _PostDetailsState extends ConsumerState<PostDetails> {
                         color: const Color.fromRGBO(0, 0, 0, 0.3),
                       ),
                       child: AppIcons.bookmark.svgPicture(
-                          height: 20,
-                          color: isFavoritePost() ? AppColors.redColor : AppColors.whiteColor,),
+                        height: 20,
+                        color: isFavoritePost() ? AppColors.redColor : AppColors.whiteColor,
+                      ),
                     ),
                   ),
                 ),

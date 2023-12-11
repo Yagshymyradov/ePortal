@@ -11,26 +11,32 @@ final appThemeData = ThemeData(
       selectedItemColor: AppColors.secondaryColor,
   ),
   scaffoldBackgroundColor: AppColors.hardDarkColor,
+  fontFamily: 'Poppins',
   textTheme: const TextTheme(
     displayLarge: TextStyle(
-      fontSize: 24,
-      fontWeight: FontWeight.w600,
-      color: AppColors.lightColor,
-    ),
-    displaySmall: TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      color: AppColors.greyColor,
-    ),
-    bodyLarge: TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.w600,
       color: AppColors.lightColor,
     ),
-    bodySmall: TextStyle(
+    displaySmall: TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.w400,
-      color: AppColors.greyColor,
+      color: AppColors.whiteColorWO,
+    ),
+    displayMedium: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: AppColors.lightColor,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      color: AppColors.whiteColorWO,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 11,
+      fontWeight: FontWeight.w400,
+      color: AppColors.whiteColorWO,
     ),
   ),
 );
@@ -39,6 +45,7 @@ class AppColors {
   AppColors._();
 
   static const whiteColor = Color.fromRGBO(255, 255, 255, 1);
+  static const whiteColorWO = Color.fromRGBO(255, 255, 255, 0.7);
   static const secondaryColor = Color.fromRGBO(0, 200, 150, 1);
   static const redColor = Color.fromRGBO(235, 87, 87, 1);
   static const lightColor = Color.fromRGBO(224, 220, 221, 1);

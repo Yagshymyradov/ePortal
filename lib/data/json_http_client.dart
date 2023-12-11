@@ -217,6 +217,7 @@ class JsonHttpClient {
     try {
       return mapper(needDecodeBody && data != null ? jsonDecode(data) : null);
     } catch (e) {
+      log(e.toString());
       throw JsonIOException(e);
     }
   }

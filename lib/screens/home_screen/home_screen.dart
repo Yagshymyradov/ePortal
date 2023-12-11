@@ -13,42 +13,52 @@ final postsProvider = FutureProvider((ref) {
   return apiClient.getPosts();
 });
 
+final trendPostsProvider = FutureProvider((ref) {
+  final apiClient = ref.watch(apiClientProvider);
+  return apiClient.getTrendPosts();
+});
+
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final items = ref.watch(postsProvider);
+    final allPosts = ref.watch(postsProvider);
+    final trendPosts = ref.watch(trendPostsProvider);
+    final allPost = allPosts.asData?.value;
+    //TODO fix it
+    if(allPost == null) return const HomePageLoadingIndicator();
+
     return Scaffold(
       appBar: AppBar(),
       body: RefreshIndicator(
         onRefresh: () async {
           ref.invalidate(postsProvider);
+          ref.invalidate(trendPostsProvider);
         },
-        child: items.when(
+        child: trendPosts.when(
           skipLoadingOnRefresh: false,
           data: (data) {
-            //TODO fix it
             return CustomScrollView(
               slivers: [
                 SliverPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   sliver: SliverToBoxAdapter(
                     child: Text(
-                      'Top',
+                      'В тренде',
                       style: appThemeData.textTheme.displayLarge,
                     ),
                   ),
                 ),
                 SliverToBoxAdapter(
                   child: SingleChildScrollView(
-                    padding: const EdgeInsets.fromLTRB(16, 16, 6, 0),
+                    padding: const EdgeInsets.fromLTRB(16, 16, 4, 0),
                     scrollDirection: Axis.horizontal,
                     child: Row(
-                      children: data.news
+                      children: data
                           .mapIndexed(
                             (e, i) => LargePostTileWidget(
-                              post: data,
+                              post: e,
                               index: i,
                             ),
                           )
@@ -60,7 +70,7 @@ class HomeScreen extends ConsumerWidget {
                   padding: const EdgeInsets.all(16),
                   sliver: SliverToBoxAdapter(
                     child: Text(
-                      'All',
+                      'Все',
                       style: appThemeData.textTheme.displayLarge,
                     ),
                   ),
@@ -68,9 +78,9 @@ class HomeScreen extends ConsumerWidget {
                 SliverPadding(
                   padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
                   sliver: SliverList.separated(
-                    itemCount: data.news.length,
+                    itemCount: allPost.news.length,
                     itemBuilder: (context, index) {
-                      return SmallPostTileWidget(post: data.news[index]);
+                      return SmallPostTileWidget(post: allPost.news[index]);
                     },
                     separatorBuilder: (context, index) {
                       return const Padding(

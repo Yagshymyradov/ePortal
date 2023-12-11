@@ -3,6 +3,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'response.g.dart';
 
+DateTime _dateTimeFromJson(String value) => DateTime.parse(value);
+
 @JsonSerializable()
 class Posts {
   final List<ItemPost> news;
@@ -41,8 +43,11 @@ class ItemPost{
   final int view;
   @HiveField(9)
   final int like;
+  @JsonKey(fromJson: _dateTimeFromJson)
   @HiveField(10)
-  final DateTime? createAt;
+  final DateTime? createdAt;
+  @HiveField(11)
+  final int? readTime;
 
   ItemPost({
     required this.id,
@@ -53,9 +58,10 @@ class ItemPost{
     required this.view,
     required this.like,
     required this.image,
-    required this.createAt,
+    required this.createdAt,
     required this.categoryId,
     required this.categoryName,
+    required this.readTime,
   });
 
   factory ItemPost.fromJson(Map<String, dynamic> json) => _$ItemPostFromJson(json);

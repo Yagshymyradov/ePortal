@@ -4,6 +4,8 @@ import 'response.dart';
 extension Endpoint on Never {
   static const String news = 'api/v1/news';
 
+  static const String newsTrend = 'api/v1/news/trend';
+
   static String newsByCategoriesName(String categoryName) => 'api/v1/news?category=$categoryName';
 
   static const String categories = 'api/v1/categories';
@@ -20,6 +22,15 @@ class ApiClient {
     return _httpClient.get(
       Endpoint.news,
       mapper: (dynamic data) => Posts.fromJson(data as Map<String, dynamic>),
+    );
+  }
+
+  Future<List<ItemPost>> getTrendPosts() {
+    return _httpClient.get(
+      Endpoint.newsTrend,
+      mapper: (dynamic data) => (data as List<dynamic>)
+          .map((dynamic e) => ItemPost.fromJson(e as Map<String, dynamic>))
+          .toList(growable: false),
     );
   }
 
@@ -40,8 +51,9 @@ class ApiClient {
   }
 
   Future<void> updatePostView(String id) {
-    return _httpClient.post<void>(
+    return _httpClient.put<void>(
       Endpoint.updateView(id),
+      needDecodeBody: false,
       mapper: (dynamic data) {
         //no-op
       },
