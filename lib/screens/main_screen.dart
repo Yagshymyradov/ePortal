@@ -79,7 +79,7 @@ class _MainScreenState extends State<MainScreen> {
     const HomeScreen(),
     const CategoryScreen(),
     const FavoriteScreen(),
-    // const ProfileScreen(),
+    const ProfileScreen(),
   ];
   int selectedPage = 0;
 
@@ -109,10 +109,10 @@ class _MainScreenState extends State<MainScreen> {
             icon: AppIcons.bookmark.svgPicture(color: AppColors.lightColor,),
             label: 'Saved',
           ),
-          // BottomNavigationBarItem(
-          //   icon: AppIcons.settings.svgPicture(color: AppColors.lightColor),
-          //   label: 'Settings',
-          // ),
+          BottomNavigationBarItem(
+            icon: AppIcons.settings.svgPicture(color: AppColors.lightColor),
+            label: 'Settings',
+          ),
         ],
       ),
     );
