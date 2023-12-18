@@ -28,6 +28,7 @@ final appThemeData = ThemeData(
       fontWeight: FontWeight.w700,
       color: AppColors.lightColor,
     ),
+
     bodyLarge: TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w600,
