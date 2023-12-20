@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 enum AppIcons{
+  tv('tv'),
+  tmSport('tmSport'),
+  football1('football1'),
+  football('football'),
+  varzishtv('varzishtv'),
   eye('eye'),
   bookmark('bookmark'),
   home('home'),
@@ -18,6 +23,8 @@ enum AppIcons{
 
   String get _jpg => 'assets/icons/$path.jpg';
 
+  String get _jpeg => 'assets/icons/$path.jpeg';
+
   Widget svgPicture({
     double? height,
     double? width,
@@ -33,4 +40,5 @@ enum AppIcons{
 
   Widget get jpgPicture => Image.asset(_jpg);
 
+  Widget get jpegPicture => Image.asset(_jpeg);
 }

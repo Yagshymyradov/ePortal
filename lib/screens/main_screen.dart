@@ -11,7 +11,7 @@ enum TabItem {
   home,
   explore,
   bookmark,
-  profile;
+  tv;
 
   Widget get icon {
     switch (this) {
@@ -21,8 +21,8 @@ enum TabItem {
         return AppIcons.globe.svgPicture(color: AppColors.lightColor);
       case TabItem.bookmark:
         return AppIcons.bookmark.svgPicture(color: AppColors.lightColor);
-      case TabItem.profile:
-        return AppIcons.settings.svgPicture(color: AppColors.lightColor);
+      case TabItem.tv:
+        return AppIcons.tv.svgPicture(color: AppColors.lightColor);
     }
   }
 
@@ -34,7 +34,7 @@ enum TabItem {
         return const ProfileScreen();
       case TabItem.bookmark:
         return const ProfileScreen();
-      case TabItem.profile:
+      case TabItem.tv:
         return const ProfileScreen();
     }
   }
@@ -48,8 +48,8 @@ enum TabItem {
         return 'Explore';
       case TabItem.bookmark:
         return 'Bookmark';
-      case TabItem.profile:
-        return 'Profile';
+      case TabItem.tv:
+        return 'Channels';
     }
   }
 
@@ -61,8 +61,8 @@ enum TabItem {
         return AppIcons.globe.svgPicture(color: AppColors.hardDarkColor);
       case TabItem.bookmark:
         return AppIcons.bookmark.svgPicture(color: AppColors.hardDarkColor);
-      case TabItem.profile:
-        return AppIcons.settings.svgPicture(color: AppColors.hardDarkColor);
+      case TabItem.tv:
+        return AppIcons.tv.svgPicture(color: AppColors.hardDarkColor);
     }
   }
 }
@@ -110,8 +110,8 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Saved',
           ),
           BottomNavigationBarItem(
-            icon: AppIcons.settings.svgPicture(color: AppColors.lightColor),
-            label: 'Settings',
+            icon: AppIcons.tv.svgPicture(color: AppColors.lightColor),
+            label: 'Channels',
           ),
         ],
       ),
